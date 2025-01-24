@@ -11,4 +11,7 @@ router.post('/', DdaderController.createDdader);
 router.put('/:id', DdaderController.updateDdader);
 router.delete('/:id', DdaderController.deleteDdader);
 
+// Routes de listing
+router.get('/daaders/:id', DdaderController.getDaaders);
+
 module.exports = router;
