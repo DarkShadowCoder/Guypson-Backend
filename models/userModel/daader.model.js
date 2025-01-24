@@ -57,3 +57,4 @@ const Daader = {
   },
 };
 
+module.exports = Daader;
