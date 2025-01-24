@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const SpecController = require('../../controllers/speculations.controller');
+const SpecController = require('../../controllers/Configuration/speculations.controller');
 
 // Routes Speculations
 router.get('/', SpecController.getAllSpecs);
