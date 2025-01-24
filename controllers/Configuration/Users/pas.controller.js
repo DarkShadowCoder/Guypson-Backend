@@ -1,4 +1,5 @@
-const Pas = require('../../models/userModel/pas.model');
+const Pas = require('../../../models/userModel/pas.model');
+
 
 // Récupérer toutes les Pas
 exports.getAllPass = (req, res) => {
@@ -36,47 +37,80 @@ exports.getPasByDaader = (req, res) => {
     });
   };
 
-// Créer une nouvelle Pas
-exports.createPas = (req, res) => {
-  const data = req.body;
-  Pas.create(data, (err, result) => {
-    if (err) {
-      res.status(500).send({ message: 'Erreur lors de la création de la Pas' });
+
+// Récupérer les Villages du Pas
+exports.getVillages = (req, res) => {
+  const id = req.params.id;
+  Pas.getVillages(id, (err, result) => {
+    if (err || result.length === 0) {
+      res.status(404).send({ message: 'Ce poste agricole ne possède pas de Villages pour l\'instant !' });
       return;
     }
-    res.status(201).json({ id: result.insertId, ...data });
+    res.status(200).json(result);
   });
 };
+
+// Créer un nouveau Pas
+exports.createPas = (req, res) => {
+  const data = req.body;
+  const nom = data.nom
+  try{
+    if(!nom){
+      res.status(403).send({message : "Nom du PA requis !! "})
+    }
+    else{
+      Pas.create(data, (err, result) => {
+      if (err) {
+        res.status(500).send({ message: 'Erreur lors de la création de la PA' });
+        return;
+      }
+      res.status(201).json({ id: result.insertId, ...data });
+      });
+    }
+
+  } catch (e) {
+    res.status(500).send({erreur: e})
+  }
+};  
 
 // Mettre à jour un Pas
 exports.updatePas = (req, res) => {
   const id = req.params.id;
   const data = req.body;
-  Pas.update(id, data, (err, result) => {
-    if (err || result.affectedRows === 0) {
-      res.status(404).send({ message: 'Échec de la mise à jour de l’Pas' });
-      return;
+  const nom = data.nom
+  try{
+    if(!nom){
+      res.status(403).send({message : "Nom du PA requis !! "})
+    }else{
+      Pas.update(id, data, (err, result) => {
+      if (err || result.affectedRows === 0) {
+        res.status(404).send({ message: 'Échec de la mise à jour de le Pas' });
+        return;
+      }
+      res.status(200).json({ message: 'PA mis à jour avec succès' });
+    });
     }
-    res.status(200).json({ message: 'Pas mis à jour avec succès' });
-  });
+  }catch (e) {
+    res.status(500).send({erreur: e})
+  }  
 };
 
-// Supprimer une Pas
-exports.deletePas = (req, res) => {
+// Supprimer une Villages
+exports.deleteVillages = (req, res) => {
   const id = req.params.id;
-  Pas.delete(id, (err, result) => {
+  Villages.delete(id, (err, result) => {
     if (err || result.affectedRows === 0) {
-      res.status(404).send({ message: 'Pas non trouvé' });
+      res.status(404).send({ message: 'Villages non trouvé' });
       return;
     }
-    res.status(200).json({ message: 'Pas supprimé avec succès' });
+    res.status(200).json({ message: 'Villages supprimé avec succès' });
   });
 };
 
 // Récupérer une Campagne par Village
 exports.getCampagnes = (req, res) => {
   const id = req.params.id;
-  Pas.getCampagnes(id, (err, result) => {
+  Villages.getCampagnes(id, (err, result) => {
     if (err || result.length === 0) {
       res.status(404).send({ message: 'Campagne non trouvé' });
       return;
