@@ -25,14 +25,26 @@ exports.getDdaderById = (req, res) => {
 
 
 // Récupérer une Ddader par Ddader
-exports.getDdaderByDdader = (req, res) => {
+exports.getDdaderByDrader = (req, res) => {
   const id = req.params.id;
-  Ddader.getByDdader(id, (err, result) => {
+  Ddader.getByDrader(id, (err, result) => {
     if (err || result.length === 0) {
       res.status(404).send({ message: 'Ddader non trouvé' });
       return;
     }
     res.status(200).json(result[0]);
+  });
+};
+
+// Récupérer les Daader du ddader
+exports.getDaaders = (req, res) => {
+  const id = req.params.id;
+  Ddader.getDaaders(id, (err, result) => {
+    if (err || result.length === 0) {
+      res.status(404).send({ message: 'Ce département ne possède pas d\'arrondissements pour l\'instant !' });
+      return;
+    }
+    res.status(200).json(result);
   });
 };
 
