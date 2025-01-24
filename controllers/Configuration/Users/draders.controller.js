@@ -1,4 +1,4 @@
-const Drader = require('../../models/userModel/drader.model');
+const Drader = require('../../../models/userModel/drader.model');
 
 // Récupérer toutes les Draders
 exports.getAllDraders = (req, res) => {
