@@ -59,10 +59,16 @@ const Campagne = {
     db.query(query, [id], callback);
   },
 
-  // Recuperation des producteurs d'une campagnes
+  // Recuperation les villages d'une campagnes
   getVillage: (id_campagne,callback) =>{
     const query = 'SELECT * FROM villages JOIN campagnes ON campagnes.id_village = villages.id WHERE campagnes.id = ?'
     db.query(query, [id_campagne], callback)
+  },
+
+  // Recuperer les producteurs de la campagne
+  getProducteurs: (id, callback) => {
+    const query = 'SELECT * FROM producteurs JOIN campagnes ON producteurs.id = campagnes.id_Producteur WHERE campagnes.id = ?';
+    db.query(query, [id], callback);
   },
 
 
