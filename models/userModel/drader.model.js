@@ -14,11 +14,17 @@ const Drader = {
     db.query(query, [id], callback);
   },
 
+  // Recuperer les ddaders du drader
+  getDdaders: (id, callback) => {
+    const query = 'SELECT * FROM ddaders JOIN draders ON draders.id = ddaders.id_DRADER WHERE draders.id = ?';
+    db.query(query, [id], callback);
+  },
   // Créer un nouvel drader
   create: (data, callback) => {
     const query = 'INSERT INTO draders SET ?';
     db.query(query, data, callback);
   },
+
 
   // Mettre à jour un drader
   update: (id, data, callback) => {

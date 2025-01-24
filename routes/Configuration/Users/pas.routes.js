@@ -6,6 +6,7 @@ const PasController = require('../../../controllers/Users/pas.controller');
 router.get('/', PasController.getAllPass);
 router.get('/:id', PasController.getPasById);
 router.get('/daader/:id', PasController.getPasByDaader);
+router.get('/campagnes/:id', PasController.getCampagnes);
 router.post('/', PasController.createPas);
 router.put('/:id', PasController.updatePas);
 router.delete('/:id', PasController.deletePas);

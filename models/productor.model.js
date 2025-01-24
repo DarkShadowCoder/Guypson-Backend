@@ -15,8 +15,20 @@ const Productor = {
   },
 
   // Récupérer tous les ops correspondant au producteur
-  getOp: (id, callback) => {
-    const query = 'SELECT ops * FROM ops JOIN affiliation ON ops.id = affiliation.id_OP JOIN producteurs ON affiliation.id_Producteur = producteurs.id WHERE producteurs.id = ?';
+  getOps: (id, callback) => {
+    const query = 'SELECT * FROM ops JOIN affiliation ON ops.id = affiliation.id_OP JOIN producteurs ON affiliation.id_Producteur = producteurs.id WHERE producteurs.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer les campagnes du producteurs
+  getCampagnes: (id, callback) => {
+    const query = 'SELECT * FROM campagnes JOIN producteurs ON producteurs.id = campagnes.id_Producteur WHERE producteurs.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer toutes les ops où le producteurs est leader
+  getOpsByLeader: (id, callback) => {
+    const query = 'SELECT * FROM ops JOIN producteurs ON producteurs.id = ops.leader WHERE producteurs.id = ?';
     db.query(query, [id], callback);
   },
 

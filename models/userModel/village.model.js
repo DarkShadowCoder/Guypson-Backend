@@ -20,6 +20,18 @@ const Village = {
     db.query(query, [id], callback);
   },
 
+  // Recuperer le pas du village
+  getPas: (id, callback) => {
+    const query = 'SELECT * FROM pas JOIN villages ON pas.id = villages.id_PA WHERE villages.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer les campagnes du village
+  getCampagnes: (id, callback) => {
+    const query = 'SELECT * FROM campagnes JOIN villages ON villages.id = campagnes.id_village WHERE villages.id = ?';
+    db.query(query, [id], callback);
+  },
+
   // Créer un nouvel village
   create: (data, callback) => {
     const query = 'INSERT INTO villages SET ?';

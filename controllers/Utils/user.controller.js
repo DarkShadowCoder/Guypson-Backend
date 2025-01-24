@@ -1,9 +1,9 @@
-const Campagne = require('../models/campagnes.model')
-const {User, Account} = require('../models/user.model')
-const Daader = require('../models/userModel/daader.model')
-const Ddader = require('../models/userModel/ddader.model')
-const Pas = require('../models/userModel/pas.model')
-const Village = require('../models/userModel/village.model')
+const Campagne = require('../../models/campagnes.model')
+const {User, Account} = require('../../models/user.model')
+const Daader = require('../../models/userModel/daader.model')
+const Ddader = require('../../models/userModel/ddader.model')
+const Pas = require('../../models/userModel/pas.model')
+const Village = require('../../models/userModel/village.model')
 
 // Middleware pour recuperer les informations utilisateur
 exports.getUser = async (req, res, next) => {

@@ -20,6 +20,24 @@ const Ddader = {
     db.query(query, [id], callback);
   },
 
+  // Recuperer les daaders du ddader
+  getDaaders: (id, callback) => {
+    const query = 'SELECT * FROM daaders JOIN ddaders ON ddaders.id = daaders.id_DDADER WHERE ddaders.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer le drader du ddader
+  getDrader: (id, callback) => {
+    const query = 'SELECT * FROM draders JOIN ddaders ON draders.id = ddaders.id_DRADER WHERE ddaders.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer les campagnes de la daader
+  getCampagnes: (id, callback) => {
+    const query = 'SELECT * FROM campagnes JOIN villages ON villages.id = campagnes.id_village JOIN pas ON villages.id_PA = pas.id JOIN daaders ON pas.id_DAADER = daaders.id JOIN ddaders ON ddaders.id = daaders.id_DDADER WHERE ddaders.id = ?';
+    db.query(query, [id], callback);
+  },
+
   // Créer un nouvel ddader
   create: (data, callback) => {
     const query = 'INSERT INTO ddaders SET ?';

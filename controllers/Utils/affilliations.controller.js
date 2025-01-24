@@ -1,4 +1,4 @@
-const Affiliation = require('../models/affiliations.model');
+const Affiliation = require('../../models/affiliations.model');
 
 // Récupérer toutes les affiliation
 exports.getAllaffiliation = (req, res) => {

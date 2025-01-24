@@ -1,4 +1,4 @@
-const Semence = require('../models/semences.model');
+const Semence = require('../../models/semences.model');
 
 // Récupérer toutes les Semences
 exports.getAllSemences = (req, res) => {

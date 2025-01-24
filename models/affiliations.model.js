@@ -8,12 +8,6 @@ const Affiliation = {
     db.query(query, callback);
   },
 
-  // Récupérer un Affiliation par ID
-  getById: (id, callback) => {
-    const query = 'SELECT * FROM affiliations WHERE id = ?';
-    db.query(query, [id], callback);
-  },
-
   // Récupérer un Affiliation par Producteur
   getByProducteurs: (id, callback) => {
     const query = 'SELECT * FROM affiliations WHERE id_Producteur = ?';
@@ -25,7 +19,13 @@ const Affiliation = {
     const query = 'SELECT * FROM affiliations WHERE id_OP = ?';
     db.query(query, [id], callback);
   },
+/*
+  // Recuperer tous les producteur d'une affiliation
+  getProd: (id_prod, id_OP) =>{
+    const query = 'SELECT * FROM producteurs WHERE id_OP'
+  }
 
+*/
 
   // Créer un nouvel Affiliation
   create: (data, callback) => {

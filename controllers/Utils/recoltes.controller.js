@@ -1,4 +1,4 @@
-const Recolte = require('../models/recoltes.model');
+const Recolte = require('../../models/recoltes.model');
 
 // Récupérer toutes les Recoltes
 exports.getAllRecoltes = (req, res) => {

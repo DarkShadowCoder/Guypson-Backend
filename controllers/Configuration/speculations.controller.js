@@ -1,4 +1,4 @@
-const Spec = require('../models/speculations.model');
+const Spec = require('../../models/speculations.model');
 
 // Récupérer toutes les Speculations
 exports.getAllSpecs = (req, res) => {
@@ -23,6 +23,7 @@ exports.getSpecById = (req, res) => {
   });
 };
 
+
 // Créer une nouvelle Speculation
 exports.createSpec = (req, res) => {
   const data = req.body;
@@ -39,9 +40,10 @@ exports.createSpec = (req, res) => {
 exports.updateSpec = (req, res) => {
   const id = req.params.id;
   const data = req.body;
+  console.log(data);
   Spec.update(id, data, (err, result) => {
     if (err || result.affectedRows === 0) {
-      res.status(404).send({ message: 'Échec de la mise à jour de l’Speculation' });
+      res.status(404).send({ message: 'Échec de la mise à jour de Speculation' , erreur: err});
       return;
     }
     res.status(200).json({ message: 'Speculation mis à jour avec succès' });

@@ -72,3 +72,15 @@ exports.deletePas = (req, res) => {
     res.status(200).json({ message: 'Pas supprimé avec succès' });
   });
 };
+
+// Récupérer une Campagne par Village
+exports.getCampagnes = (req, res) => {
+  const id = req.params.id;
+  Pas.getCampagnes(id, (err, result) => {
+    if (err || result.length === 0) {
+      res.status(404).send({ message: 'Campagne non trouvé' });
+      return;
+    }
+    res.status(200).json(result);
+  });
+};

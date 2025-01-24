@@ -21,11 +21,24 @@ const Campagne = {
     db.query(query, [id], callback);
   },
 
+  // Recuperation des producteurs d'une campagnes
+  getProd: (id_campagne,callback) =>{
+    const query = 'SELECT * FROM producteurs JOIN campagnes ON campagnes.id_Producteur = producteurs.id WHERE campagnes.id = ?'
+    db.query(query, [id_campagne], callback)
+  },
+
   // Récupérer un Campagne par OP
   getByOp: (id, callback) => {
     const query = 'SELECT * FROM campagnes WHERE id_OP = ?';
     db.query(query, [id], callback);
   },
+
+  // Recuperation des OP d'une campagnes
+  getOp: (id_campagne,callback) =>{
+    const query = 'SELECT * FROM ops JOIN campagnes ON campagnes.id_OP = ops.id WHERE campagnes.id = ?'
+    db.query(query, [id_campagne], callback)
+  },
+
 
   // Récupérer un Campagne par speculation
   getBySpeculation: (id, callback) => {
@@ -33,11 +46,25 @@ const Campagne = {
     db.query(query, [id], callback);
   },
 
+  // Recuperation des producteurs d'une campagnes
+  getSpec: (id_campagne,callback) =>{
+    const query = 'SELECT * FROM speculations JOIN campagnes ON campagnes.id_Speculation = speculations.id WHERE campagnes.id = ?'
+    db.query(query, [id_campagne], callback)
+  },
+
+
   // Récupérer un Campagne par village
   getByVillage: (id, callback) => {
     const query = 'SELECT * FROM campagnes WHERE id_village = ?';
     db.query(query, [id], callback);
   },
+
+  // Recuperation des producteurs d'une campagnes
+  getVillage: (id_campagne,callback) =>{
+    const query = 'SELECT * FROM villages JOIN campagnes ON campagnes.id_village = villages.id WHERE campagnes.id = ?'
+    db.query(query, [id_campagne], callback)
+  },
+
 
   // Recuperer une Campaggne par village et par speculation
   getBySpeculationAndVillage: (id_village,id_spec, callback) => {
@@ -61,6 +88,13 @@ const Campagne = {
     const query = 'DELETE FROM campagnes WHERE id = ?';
     db.query(query, [id], callback);
   },
+
+  // Recuperation des recoltes d'une campagnes
+  getRecoltes: (id_campagne,callback) =>{
+    const query = 'SELECT * FROM recoltes WHERE id_campagne = ?';
+    db.query(query, [id_campagne], callback);
+  },
 };
+
 
 module.exports = Campagne;

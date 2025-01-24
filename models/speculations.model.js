@@ -14,6 +14,12 @@ const Spec = {
     db.query(query, [id], callback);
   },
 
+  // Récupérer les campagnes d'une speculations
+  getCampagnes: (id, callback) => {
+    const query = 'SELECT * FROM campagnes JOIN speculations ON speculations.id = campagnes.id_Speculation WHERE speculations.id = ?';
+    db.query(query, [id], callback);
+  },
+
   // Créer un nouvel Speculation
   create: (data, callback) => {
     const query = 'INSERT INTO speculations SET ?';

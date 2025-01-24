@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const MySQLStore = require('connect-mysql')(session);
@@ -23,8 +24,15 @@ const { checkSession } = require('./controllers/user.controller');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+
 // Middleware pour analyser les cookies
 app.use(cookieParser());
+app.use(cors(corsOptions));
 
 // Configuration de la session
 const sessionStore = new MySQLStore({

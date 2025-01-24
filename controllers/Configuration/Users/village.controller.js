@@ -1,4 +1,4 @@
-const Village = require('../../models/userModel/village.model');
+const Village = require('../../../models/userModel/village.model');
 
 // Récupérer toutes les Village
 exports.getAllVillages = (req, res) => {

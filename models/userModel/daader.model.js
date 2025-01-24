@@ -20,6 +20,24 @@ const Daader = {
     db.query(query, [id], callback);
   },
 
+  // Recuperer les pas du daader
+  getPas: (id, callback) => {
+    const query = 'SELECT * FROM pas JOIN daaders ON daaders.id = pas.id_DAADER WHERE daaders.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer les ddader du daader
+  getDdader: (id, callback) => {
+    const query = 'SELECT * FROM ddaders JOIN daaders ON ddaders.id = daaders.id_DDADER WHERE daaders.id = ?';
+    db.query(query, [id], callback);
+  },
+
+  // Recuperer les campagnes de la daader
+  getCampagnes: (id, callback) => {
+    const query = 'SELECT * FROM campagnes JOIN villages ON villages.id = campagnes.id_village JOIN pas ON villages.id_PA = pas.id JOIN daaders ON pas.id_DAADER = daaders.id WHERE daaders.id = ?';
+    db.query(query, [id], callback);
+  },
+
   // Créer un nouvel daader
   create: (data, callback) => {
     const query = 'INSERT INTO daaders SET ?';
@@ -39,4 +57,3 @@ const Daader = {
   },
 };
 
-module.exports = Daader;

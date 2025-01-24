@@ -1,6 +1,6 @@
 const session = require('express-session');
-const Campagne = require('../models/campagnes.model');
-const Recoltes = require('../models/recoltes.model');
+const Campagne = require('../../models/campagnes.model');
+const Recoltes = require('../../models/recoltes.model');
 
 // Récupérer toutes les Campagnes
 exports.getAllCampagnes = (req, res) => {
