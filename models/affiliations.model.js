@@ -40,9 +40,9 @@ const Affiliation = {
   },
 
   // Supprimer un Affiliation
-  delete: (id, callback) => {
-    const query = 'DELETE FROM affiliations WHERE id = ?';
-    db.query(query, [id], callback);
+  delete: (id_prod, id_OP, callback) => {
+    const query = 'DELETE FROM affiliations WHERE id_Producteur = ? AND id_OP = ?';
+    db.query(query, [id_prod, id_OP], callback);
   },
 };
 
